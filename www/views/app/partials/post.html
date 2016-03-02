@@ -1,0 +1,30 @@
+<div class="product-view">
+  <div class="product-card-content">
+    <div class="item item-image">
+      <pre-img ratio="_1_1" helper-class="main-image">
+        <img ng-if="!modalGeoloc" ng-click="showGeoModal(post, post.user.get('username'))" ng-src="{{post.picture.get('file')._url}}" spinner-on-load>
+        <img ng-if="modalGeoloc" ng-src="{{post.picture.get('file')._url}}" spinner-on-load>
+      </pre-img>
+    </div>
+    <div class="item item-body">
+      <p ng-if="post.description" class="product-description">{{post.description}}</p>
+      <p ng-if="post.title" class="product-title" ng-click="showGeoModal(post, post.user.get('username'))"><i class="icon ion-ttwbw"></i> <b>{{post.title}}</b> </p>
+      <p class="product-action">
+        <i ng-if="post.user">added by {{post.user.get("username")}} </i>
+        <span class="card-moment-posted" am-time-ago="post.picture.createdAt"></span></br>
+      </p>
+      <p class="product-action">
+        <!-- <p ng-click="Instagram(post)" class="product-like"><i class="icon ion-instagram"></i></p> -->
+        <!-- <p ng-click="Share(post)" class="product-like"><i class="icon ion-socal"></i></p> -->
+        <p ng-if="!myPictures&&post.geolocation" class="product-like" ng-click="Geolocalise(post.geolocation)"><i class="icon ion-map"></i></p>
+        <p ng-if="!myPictures&&!post.reported" ng-click="Report(post)" class="product-like"><i class="icon ion-android-alert"></i></p>
+        <p ng-if="!myPictures&&post.reported" class="product-like"><i class="icon ion-android-alert"></i></p>
+        <p ng-if="myPictures && (loggedUser.id!=null&&loggedUser.id==post.user.id)" ng-click="Edit(post.picture)" class="product-like"><i class="icon ion-edit"></i></p>
+        <p ng-if="myPictures && !myModal && (loggedUser.id!=null&&loggedUser.id==post.picture.get('user').id)" class="product-like" ng-click="deletePost(post)"><i class="icon ion-trash-a"></i></p>
+        <p ng-if="post.picture.liked" ng-disabled="processing" ng-click='unLike(post.picture)' class="product-like"><i class="icon ion-android-favorite"></i></p>
+        <p ng-if="!post.picture.liked" ng-disabled="processing" ng-click='Like(post.picture, post.geolocation.get("title"))' class="product-like"><i class="icon ion-android-favorite-outline"></i></p>
+        <p class="likes">{{post.picture.likes}}</p>
+      </p>
+    </div>
+  </div>
+</div>

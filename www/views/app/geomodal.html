@@ -1,0 +1,73 @@
+<ion-modal-view class="modal-view profile-view" cache-view="false">
+	<ion-header-bar class="bar-clear">
+		<h1 class="title modal-title">JS Social Map</h1>
+		<a class="button button-clear" ng-click="hideGeoModal()"><span class="icon ion-close"></span></a>
+	</ion-header-bar>
+  <ion-content has-bouncing='false' class="profile-content" delegate-handle="geo-scroll">
+
+		<div class="row profile-data">
+			<div class="col">
+				<ion-slide-box class="profile-slides" on-slide-changed="slideHasChanged($index)">
+					<ion-slide>
+						<div class="row slide-content">
+							<div class="col col-center user-data">
+								<div class="user-image-outer">
+									<pre-img ratio="_1_1" helper-class="rounded-image">
+										<!-- <img class="user-image" ng-src="{{user.picture}}" spinner-on-load> -->
+										<img ng-click="Geolocalise(modalGeoloc)" class="user-image" src="img/logo.png" spinner-on-load>
+									</pre-img>
+								</div>
+								<!--
+								<div class="user-image-outer">
+									<pre-img ratio="_1_1" helper-class="rounded-image">
+										<img class="user-image" ng-src="{{modalGeoloc.get('picture')._url}}" spinner-on-load>
+									</pre-img>
+								</div>
+								-->
+								<h2 class="user-name">{{modalGeoloc.get('title')}}</h2>
+									<p class="user-resume">
+										<b>{{modalGeoloc.get('picCount')}}</b> photo(s)
+										<b>{{modalGeoloc.get('followers')}}</b> follower(s)
+									</p>
+							</div>
+						</div>
+					</ion-slide>
+					<ion-slide>
+						<div class="row slide-content">
+							<div class="col col-center user-data">
+								<p class="user-resume">
+									<p class="user-resume">added</p>
+									<p class="user-resume" am-time-ago="modalGeoloc.createdAt"></p>
+									<p class="user-resume">by</p>
+									<h2 class="user-name">{{GeolocOwner}}</h2>
+								</p>
+							</div>
+						</div>
+					</ion-slide>
+				</ion-slide-box>
+			</div>
+		</div>
+
+		<div class="row user-interactions">
+			<div class="col">
+				<div class="row split-actions" ng-if="!myProfile">
+					<div class="col">
+						<button ng-disabled="processing" ng-if="!following" class="button button-block" ng-click="Follow(modalGeoloc)" ><i class="icon ion-android-star-outline"></i></button>
+						<button ng-disabled="processing" ng-if="following" class="button button-block highlighted" ng-click="unFollow(modalGeoloc)" ><i class="icon ion-android-star"></i></button>
+					</div>
+					<div class="col">
+						<button class="button button-block" ng-click="Upload(modalGeoloc)"><i class="icon ion-photosi"></i></button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+    <div class="col col-100 user-related-content-item" ng-repeat="post in modalPictures | orderBy:'createdAt' ">
+      <section ng-include="'views/app/partials/post.html'" class="post-card-outer"></section>
+    </div>
+
+		<ion-infinite-scroll ng-if="moreModalDataCanBeLoaded" on-infinite="loadMoreModalData(modalGeoloc)" distance="8%">
+		</ion-infinite-scroll>
+
+  </ion-content>
+</ion-modal-view>

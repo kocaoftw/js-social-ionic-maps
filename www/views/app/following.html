@@ -1,0 +1,60 @@
+<div ng-if="userLoggedIn">
+  <ion-view class="feed-view" view-title="Following">
+    <ion-content delegate-handle="feed-scroll">
+
+      <ion-refresher pulling-text="Pull to refresh..." on-refresh="loadMoreData(1)">
+      </ion-refresher>
+
+      <div ng-if="noFollowPicture" class="col col-100 user-related-content-item">
+        <br>
+        <div class="product-view">
+          <div class="product-card-content">
+            <div class="item item-body">
+              <p class="product-action" style="text-align:center">
+                <br>
+                You do not follow any geolocation yet.
+                <br><br>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div ng-repeat="post in followPictures | orderBy:'-createdAt' ">
+        <section ng-include="'views/app/partials/post.html'" class="post-card-outer"></section>
+      </div>
+
+      <ion-infinite-scroll ng-if="moreDataCanBeLoaded" on-infinite="loadMoreData(page+1)" distance="8%">
+      </ion-infinite-scroll>
+
+    </ion-content>
+  </ion-view>
+</div>
+
+<div ng-if="!userLoggedIn">
+  <ion-view class="welcome-view" view-title="Your Profile" cache-view="true">
+    <!-- <ion-nav-bar class="feed-color"></ion-nav-bar> -->
+    <ion-content scroll="false">
+      <div style="background-color:#fff;background-position:center;height:100%;">
+        <div class="top-content row">
+          <div class="app-copy col col-center">
+            <a ui-sref="create-account"><img src="img/logo.png" width="150px"></a></br>
+            <a ui-sref="create-account"><img src="img/title.png" width="300px"></a>
+            <!--h1 class="app-logo">JS-SMIS</h1-->
+            <!--p class="app-tagline">
+             JS Social Map Ionic Starter
+            </p-->
+          </div>
+        </div>
+        <div class="bottom-content row">
+          <div class="col col-bottom">
+            <div class="button-bar">
+              <a class="create-account button-large button button-block" ui-sref="register">Register</a>
+              <a class="create-account button-large button button-block" ui-sref="login">Login</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ion-content>
+  </ion-view>
+</div>

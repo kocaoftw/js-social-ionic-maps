@@ -1,0 +1,68 @@
+ion-nav-bar
+{
+	&.feed-color
+	{
+		ion-header-bar
+		{
+			background-color: $feed-bar-bg !important;
+			background: $feed-bar-bg !important;
+			border: none !important;
+			background-size: 0px !important; // To remove bottom border on header
+		}
+
+		*
+		{
+			color: $feed-bar-color;
+
+			.buttons button::before
+			{
+				color: $feed-bar-color;
+			}
+		}
+	}
+}
+
+.feed-view
+{
+	background-color: $feed-content-bg;
+
+	.button.button-block, .button.button-full
+	{
+		margin: 0px;
+	}
+
+	.item-body.geolocalise {
+		padding: 4px;
+		background-color: $theme-color-2;
+	}
+
+	.geo-label {
+		color: #ffffff;
+	}
+
+	.scroll-refresher
+	{
+		*
+		{
+			color: $feed-bar-color;
+		}
+
+		.spinner
+		{
+			stroke: $feed-bar-color;
+		}
+	}
+
+	ion-infinite-scroll
+	{
+		*
+		{
+			color: $feed-bar-color;
+		}
+
+		.spinner
+		{
+			stroke: $feed-bar-color;
+		}
+	}
+}

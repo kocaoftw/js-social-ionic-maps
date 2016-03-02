@@ -1,0 +1,46 @@
+<ion-view view-title="Settings" class="settings-view" hide-back-button="false" cache-view="false">
+  <ion-nav-bar class="view-navigation settings-color">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content>
+    <div class="list">
+      <div class="item item-divider title">Update your Username:</div>
+      <label class="item item-input">
+        <input type="text" autocapitalize='none' placeholder="Username" name="username" ng-model="user.username" required>
+      </label>
+      <label class="item item-text-wrap">
+        <p ng-show="username_error" class="message error" style="text-align:center">{{username_error}}</p>
+        <button class="button button-block button-balanced" ng-click="UpdateUsername()">Update Username</button>
+      </label>
+      <div class="item item-divider title">Update your Password:</div>
+      <label class="item item-input">
+        <input type="text" autocapitalize='none' placeholder="Password" name="password" ng-model="user.password" required>
+      </label>
+      <label class="item item-text-wrap">
+        <p ng-show="password_error" class="message error" style="text-align:center">{{password_error}}</p>
+        <button class="button button-block button-balanced" ng-click="UpdatePassword()">Update Password</button>
+      </label>
+      <div class="item item-divider title">
+        More
+      </div>
+      <a class="item item-icon-left settings-option" ng-click="showTerms()">
+        <i class="icon ion-ios-information-outline"></i>
+        Terms of Service
+      </a>
+      <a class="item item-icon-left settings-option" ng-click="showPrivacyPolicy()">
+        <i class="icon ion-ios-locked-outline"></i>
+        Privacy Policy
+      </a>
+      <!--a class="item item-icon-left settings-option">
+        <i class="icon ion-ios-help-outline"></i>
+        Help
+      </a-->
+      <!--a class="item item-icon-left settings-option" ui-sref="facebook-sign-in"-->
+      <a class="item item-icon-left settings-option" ng-click="Logout()">
+        <i class="icon ion-ios-close-outline"></i>
+        Sign Out
+      </a>
+    </div>
+  </ion-content>
+</ion-view>

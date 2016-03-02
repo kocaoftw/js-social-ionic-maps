@@ -1,0 +1,21 @@
+<ion-view view-title="Geolocation" class="feed-view">
+  <ion-content scroll="false" id="geo_canvas" >
+    <br>
+    <div class="col col-100 user-related-content-item">
+      <div class="product-view geolocalise">
+        <div class="product-card-content geolocalise">
+          <div class="item item-body geolocalise">
+            <p class="geo-label" style="text-align:center">
+              Select a geolocation or long click to create a new one.
+              <div class="button-bar">
+                <button class="button button-block icon-left ion-android-cancel" ng-click="Cancel()">Cancel</button>
+                <button class="button button-block icon-left ion-upload" ng-click="Geolocalise()">Next</button>
+              </div>
+              <!-- <span ng-show="error" class="message error">{{error}}</span> -->
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,29 @@
+<ion-view class="welcome-view" cache-view="true">
+  <ion-nav-bar>
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+    <ion-nav-buttons side="right">
+      <a class="button button-clear button-light" ui-sref="app.map">Skip</a>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content scroll="false">
+    <!-- <div multi-bg="['http://i.giphy.com/1lRrsraIsEYRW.gif']" interval="3000" helper-class="no-facebook-welcome-bg"> -->
+    <div style="background-color:#FFF;background-position:center;height:100%;">
+    <!-- <div style="background-image:url('img/ttw_bkg.gif');background-color:#000;background-position:center;height:100%;"> -->
+      <div class="top-content row">
+        <div class="app-copy col col-center">
+          <a ui-sref="create-account"><img src="img/logo.png" width="150px"></a></br>
+          <a ui-sref="create-account"><img src="img/title.png" width="300px"></a>
+        </div>
+      </div>
+      <div class="bottom-content row">
+        <div class="col col-bottom">
+          <div class="button-bar">
+            <a class="create-account button-large button button-block" ui-sref="register">Register</a>
+            <a class="create-account button-large button button-block" ui-sref="login">Login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

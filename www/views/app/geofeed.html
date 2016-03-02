@@ -1,0 +1,31 @@
+<ion-view class="feed-view" view-title="Geo Feed">
+  <ion-content delegate-handle="feed-scroll">
+
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="loadMoreData(1)">
+    </ion-refresher>
+
+    <div ng-if="noGeoPicture" class="col col-100 user-related-content-item">
+      <br>
+      <div class="product-view">
+        <div class="product-card-content">
+          <div class="item item-body">
+            <p class="product-action" style="text-align:center">
+              <br>
+              No geolocation added in this area yet. <br>
+              Please move the visible zone on the map.
+              <br><br>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div ng-repeat="post in geolocations | orderBy:'-createdAt' ">
+      <section ng-include="'views/app/partials/post.html'" class="post-card-outer"></section>
+    </div>
+
+    <ion-infinite-scroll ng-if="moreDataCanBeLoaded" on-infinite="loadMoreData(page+1)" distance="8%">
+    </ion-infinite-scroll>
+
+  </ion-content>
+</ion-view>

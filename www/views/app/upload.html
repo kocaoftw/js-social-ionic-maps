@@ -1,0 +1,60 @@
+<div ng-if="userLoggedIn">
+  <ion-view class="feed-view" view-title="Upload" cache-view="false">
+    <ion-content has-bouncing="false">
+      <br>
+      <div class="product-view">
+        <div class="product-card-content">
+          <div class="item item-image">
+            <div ng-if="picdata || picture.get('file')._url">
+              <pre-img ratio="_1_1" helper-class="main-image">
+                <img ng-if="picdata" ng-src="data:image/jpeg;base64,{{picdata}}" spinner-on-load>
+                <img ng-if="picture.get('file')._url" ng-src="{{picture.get('file')._url}}" spinner-on-load>
+              </pre-img>
+            </div>
+            <div ng-if="!picdata && !picture.get('file')._url" class="no-image">
+              <div class="user-image-outer">
+                <br><br><br><br><br>
+                <pre-img ratio="_1_1" helper-class="rounded-image">
+                  <img ng-click="Geolocalise(modalGeoloc)" class="user-image" src="img/logo.png" spinner-on-load>
+                </pre-img>
+                <br><br><br><br><br>
+              </div>
+            </div>
+          </div>
+          <div class="item item-body">
+            <p ng-click="Cancel()" class="product-like"><i class="icon ion-android-cancel"></i></p>
+            <p ng-click="SelectPicture()" class="product-like"><i class="icon ion-photoss"></i></p>
+            <p ng-click="TakePicture()" class="product-like"><i class="icon ion-photosi"></i></p>
+            <p ng-if="geolocation.id && picdata" ng-click="Upload(geolocation)" class="product-like"><i class="icon ion-upload"></i></p>
+            <p ng-if="!geolocation.id && picdata" ng-click="Upload()" class="product-like"><i class="icon ion-upload"></i></p>
+          </div>
+        </div>
+      </div>
+    </ion-content>
+  </ion-view>
+</div>
+
+<div ng-if="!userLoggedIn">
+  <ion-view class="welcome-view" view-title="Your Profile" cache-view="true">
+    <!-- <ion-nav-bar class="feed-color"></ion-nav-bar> -->
+    <ion-content scroll="false">
+      <!-- <div multi-bg="['http://i.giphy.com/1lRrsraIsEYRW.gif']" interval="3000" helper-class="no-facebook-welcome-bg"> -->
+      <div style="background-color:#fff;background-position:center;height:100%;">
+        <div class="top-content row">
+          <div class="app-copy col col-center">
+            <a ui-sref="create-account"><img src="img/logo.png" width="150px"></a></br>
+            <a ui-sref="create-account"><img src="img/title.png" width="300px"></a>
+          </div>
+        </div>
+        <div class="bottom-content row">
+          <div class="col col-bottom">
+            <div class="button-bar">
+              <a class="create-account button-large button button-block" ui-sref="register">Register</a>
+              <a class="create-account button-large button button-block" ui-sref="login">Login</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ion-content>
+  </ion-view>
+</div>

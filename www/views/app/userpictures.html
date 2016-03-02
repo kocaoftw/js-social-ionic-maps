@@ -1,0 +1,62 @@
+<div ng-if="userLoggedIn">
+  <ion-view view-title="User Pictures" class="feed-view">
+    <ion-content class="" delegate-handle="feed-scroll">
+
+      <ion-refresher pulling-text="Pull to refresh..." on-refresh="loadMoreData(1)">
+      </ion-refresher>
+
+      <div class="col">
+        <button class="button button-block icon-left ion-gear-a button-balanced highlighted" ui-sref="settings">
+          Settings
+        </button>
+      </div>
+
+      <div ng-if="noUserPicture" class="col col-100 user-related-content-item">
+        <div class="product-view">
+          <div class="product-card-content">
+            <div class="item item-body">
+              <p class="product-action" style="text-align:center">
+                <br>
+                You have no photo yet. <br>
+                Please add a new photo.
+                <br><br>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div ng-repeat="post in userPictures | orderBy:'-createdAt' ">
+        <section ng-include="'views/app/partials/post.html'" class="post-card-outer"></section>
+      </div>
+
+      <ion-infinite-scroll ng-if="moreDataCanBeLoaded" on-infinite="loadMoreData(page+1)" distance="1%">
+      </ion-infinite-scroll>
+
+    </ion-content>
+  </ion-view>
+</div>
+
+<div ng-if="!userLoggedIn">
+  <ion-view class="welcome-view" view-title="Your Profile" cache-view="true">
+    <!-- <ion-nav-bar class="feed-color"></ion-nav-bar> -->
+    <ion-content scroll="false">
+      <div style="background-color:#fff;background-position:center;height:100%;">
+        <div class="top-content row">
+          <div class="app-copy col col-center">
+            <a ui-sref="create-account"><img src="img/logo.png" width="150px"></a></br>
+            <a ui-sref="create-account"><img src="img/title.png" width="300px"></a>
+          </div>
+        </div>
+        <div class="bottom-content row">
+          <div class="col col-bottom">
+            <div class="button-bar">
+              <a class="create-account button-large button button-block" ui-sref="register">Register</a>
+              <a class="create-account button-large button button-block" ui-sref="login">Login</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ion-content>
+  </ion-view>
+</div>
